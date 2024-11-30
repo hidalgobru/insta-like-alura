@@ -31,3 +31,20 @@ Antes de rodar o projeto localmente, você precisa ter instalado:
 1. Clone o repositório para o seu ambiente local:
    ```bash
    git clone https://github.com/seu-usuario/seu-repositorio.git
+
+2. Entre no diretório do projeto(se não estiver):
+   ```bash
+   cd seu-repositorio
+
+3. Instale as dependências do projeto:
+   ```bash
+   npm install
+
+4. Crie um arquivo .env na raiz do projeto e adicione as configurações necessárias (como chave de acesso ao MongoDB e Google Gemini):
+   ```bash
+   MONGO_URI=mongodb://localhost:27017/seu-banco
+   GEMINI_API_KEY=suachaveaqui                                  
+   
+5. Inicie o servidor:
+   ```bash
+   npm start
