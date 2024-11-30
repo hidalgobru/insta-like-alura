@@ -1,4 +1,4 @@
-import { getTodosPosts, criarPost, atualizarPost } from "../models/postsModel.js"; // Importa funções para buscar e criar posts
+import { getTodosPosts, criarPost, atualizarPost, excluirPost} from "../models/postsModel.js"; // Importa funções para buscar e criar posts
 import fs from "fs"; // Importa o módulo de sistema de arquivos para manipulação de arquivos
 import gerarDescricaoComGemini from '../services/geminiService.js';
 
@@ -67,6 +67,27 @@ export async function atualizarNovoPost(req, res) {
         
         // Envia a resposta com o post criado e status 200 (OK)
         res.status(200).json(postCriado);  
+    } catch (erro) {
+        // Se ocorrer um erro, exibe a mensagem de erro no console
+        console.error(erro.message);
+        // Envia uma resposta com status 500 (Erro interno do servidor) e uma mensagem de erro
+        res.status(500).json({ "Erro": "Falha na requisição" });
+    }
+}
+
+export async function deletarPost(req, res) { // Obtém o ID do post a ser excluído
+    const id = req.params.id;
+
+    try {
+        // Chama a função para excluir o post do banco de dados
+        const post = {
+            id: id
+        }
+
+        await excluirPost(id);
+        
+        // Envia a resposta com o post criado e status 200 (OK)
+        res.status(200).json(post);  
     } catch (erro) {
         // Se ocorrer um erro, exibe a mensagem de erro no console
         console.error(erro.message);
